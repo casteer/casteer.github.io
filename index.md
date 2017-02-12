@@ -30,15 +30,6 @@
 - Final year undergraduate project supervision
 - Teaching laboratory supervision
 
-### Conference Presentations, Posters and Attendance
-
-- IEEE Symposium on Radiation Measurements and Applications 2016, University of California, Berkeley. Invited speaker and session chair
-- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, Strasbourg, France. 
-- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2015, San Diego, United States.
-- Technology and Instrumentation in Particle Physics 2015, Amsterdam, The Netherlands. 
-- 34th International Cosmic Ray Conference 2015, The Hague, The Netherlands.
-
-
 ### Publications
 
 - L. Frazao, J. Velthuis, C. Thomay, and C. Steer. Discrimination of high-Z materials in concrete-filled containers using muon scattering tomography. Journal of Instrumentation, 11(07):P07020, 2016.
@@ -81,3 +72,13 @@
 - A. I. Coldea, S. J. Blundell, I. M. Marshall, C. A. Steer, J. Singleton, F. L. Pratt, L. D. Noailles, M. J. Rosseinsky, L. E. Spring, and P. D. Battle. Evolution of the magnetic and magnetotransport properties of the Ga-substituted manganite compounds La2−xSrxMnGaO6. Phys. Rev. B, 65:054402, Dec 2001.
 - P. Vaqueiro, A. V. Powell, A. I. Coldea, C. A. Steer, I. M. Marshall, S. J. Blundell, J. Singleton, and T. Ohtani. Colossal magnetoresistance in the layered chromium sulphide Cr2S3−x (x = 0.08). Phys. Rev. B, 64:132402, Aug 2001.
 - Peter D Battle, Anthony MT Bell, Stephen J Blundell, Amalia I Coldea, Edmund J Cussen, Georgina C Hardy, Ishbel M Marshall, Matthew J Rosseinsky, and Christopher A Steer. Chemically induced magnetism and magnetoresistance in La0.8Sr1.2Mn0.6Rh0.4O4. Journal of the American Chemical Society, 123(31):7610–7615, 2001.
+
+### Conference Presentations, Posters and Attendance
+
+- IEEE Symposium on Radiation Measurements and Applications 2016, University of California, Berkeley. Invited speaker and session chair
+- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, Strasbourg, France. 
+- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2015, San Diego, United States.
+- Technology and Instrumentation in Particle Physics 2015, Amsterdam, The Netherlands. 
+- 34th International Cosmic Ray Conference 2015, The Hague, The Netherlands.
+
+
