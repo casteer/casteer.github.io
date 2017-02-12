@@ -1,4 +1,29 @@
-## Welcome to GitHub Pages
+## Dr Chris Steer
+
+### Software
+
+- Python
+- C++ 
+- Matlab 
+
+Applications include 
+
+- Geant4
+- Data acquisition 
+- Data analysis 
+
+### Hardware
+
+### Courses
+
+- Module convenor for 3D Manufacturing at St Mary's University, Twickenham 
+- Laboratory supervision 
+
+### Research Experience
+
+### Publications
+
+
 
 You can use the [editor on GitHub](https://github.com/casteer/casteer.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
