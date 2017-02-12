@@ -5,7 +5,7 @@
 - Cosmic ray studies  
 - Instrumentation for particle detection and environmental sensing
 - Hyperspectral satellite image analysis
-- Image and data analysis algorithm development, particularly fusion and registration
+- Image and data analysis algorithm development, particularly image fusion and registration
 
 ### Software
 
