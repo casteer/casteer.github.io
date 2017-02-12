@@ -27,9 +27,9 @@
 ### Teaching
 
 - Module convenor for 3D Manufacturing at St Mary's University, Twickenham 
-- Laboratory supervision
 - Undergraduate tutorials in Condensed Matter Physics at Keble College, Oxford. 
 - Final year undergraduate project supervision
+- Teaching laboratory supervision
 
 ### Conference Presentations
 
