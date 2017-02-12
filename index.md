@@ -4,7 +4,8 @@
 
 
 
-- Python
+- ![Python](https://www.python.org/static/img/python-logo.png)
+
 - C++ 
 - Matlab 
 
