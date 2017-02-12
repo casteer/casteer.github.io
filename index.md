@@ -5,14 +5,13 @@
 
 
 - ![Python](https://www.python.org/static/img/python-logo.png)
-
 - C++ 
 - Matlab 
 
 Applications include 
 
 ![Geant4](http://geant4.cern.ch/geant4/images/geanttiny.gif){:class="img-responsive"}
-
+![ROOT](https://root.cern.ch/img/logos/ROOT_Logo/misc/generic-logo-color-plustext-512.png)
 - Data acquisition 
 - Data analysis 
 
