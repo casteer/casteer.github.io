@@ -1,7 +1,8 @@
-## Dr Chris Steer
 
 
 ### Software
+
+
 
 - Python
 - C++ 
@@ -9,7 +10,8 @@
 
 Applications include 
 
-- Geant4
+![Geant4](http://geant4.cern.ch/geant4/images/geanttiny.gif){:class="img-responsive"}
+
 - Data acquisition 
 - Data analysis 
 
@@ -26,6 +28,7 @@ Applications include
 
 - IEEE Symposium on Radiation Measurements and Applications 2016, May 22-26, University of California, Berkeley. Invited speaker and session chair
 - IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, October 29-November 5. 
+
 
 ### Publications
 
