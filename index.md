@@ -1,5 +1,4 @@
 
-
 ### Research Interests and Experience
 
 - Interactions of cosmic rays and the environment
@@ -34,7 +33,10 @@
 ### Conference Presentations
 
 - IEEE Symposium on Radiation Measurements and Applications 2016, May 22-26, University of California, Berkeley. Invited speaker and session chair
-- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, October 29-November 5. 
+- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, October 29-November 5, Strasbourg, France. 
+- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2015, October 29-November 5, San Diego, United States.
+- Technology and Instrumentation in Particle Physics 2015, June 2-6, Amsterdam, Netherlands. 
+
 
 ### Publications
 
