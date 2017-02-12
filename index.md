@@ -23,11 +23,12 @@
 - Environmental sensing
 - Magnetic materials characterisation techniques i.e. SQUID and AC magnetic susceptometry, X-ray diffraction, four-point resisitivity
 
-### Courses
+### Teaching
 
 - Module convenor for 3D Manufacturing at St Mary's University, Twickenham 
 - Laboratory supervision
 - Undergraduate tutorials in Condensed Matter Physics at Keble College, Oxford. 
+- Final year undergraduate project 
 
 ### Presentations
 
