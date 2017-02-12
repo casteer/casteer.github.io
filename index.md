@@ -10,8 +10,8 @@
 
 Applications include 
 
-![Geant4](http://geant4.cern.ch/geant4/images/geanttiny.gif){:class="img-responsive"}
-![ROOT](https://root.cern.ch/img/logos/ROOT_Logo/misc/generic-logo-color-plustext-512.png)
+![Geant4](http://geant4.cern.ch/geant4/images/geanttiny.gif){width=4cm}
+![ROOT](https://root.cern.ch/img/logos/ROOT_Logo/misc/generic-logo-color-plustext-512.png){width=4cm}
 - Data acquisition 
 - Data analysis 
 
