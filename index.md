@@ -2,8 +2,10 @@
 
 ### Research Interests and Experience
 
-
-
+- Cosmic ray studies  
+- Instrumentation for particle detection and environmental sensing
+- Hyperspectral satellite image analysis
+- Image and data analysis algorithm development, particularly fusion and registration
 
 ### Software
 
@@ -14,9 +16,6 @@
 - Geant4
 - ROOT/RooFit
 - Markdown developement i.e. Grav and Jekyll
-- Algorithm development 
-- Hyperspectral satellite image analysis
-- Image and data analysis algorithm development, particularly fusion and registration
 
 ### Hardware
 
