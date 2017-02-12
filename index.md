@@ -6,6 +6,7 @@
 - Instrumentation for particle detection and environmental sensing
 - Hyperspectral satellite image analysis
 - Image and data analysis algorithm development, particularly fusion and registration
+- Algorithm development 
 
 ### Software
 
