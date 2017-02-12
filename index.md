@@ -30,11 +30,10 @@
 - Undergraduate tutorials in Condensed Matter Physics at Keble College, Oxford. 
 - Final year undergraduate project supervision
 
-### Presentations
+### Conference Presentations
 
 - IEEE Symposium on Radiation Measurements and Applications 2016, May 22-26, University of California, Berkeley. Invited speaker and session chair
 - IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, October 29-November 5. 
-
 
 ### Publications
 
