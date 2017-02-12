@@ -30,12 +30,13 @@
 - Final year undergraduate project supervision
 - Teaching laboratory supervision
 
-### Conference Presentations
+### Conference Presentations, Posters and Attendance
 
-- IEEE Symposium on Radiation Measurements and Applications 2016, May 22-26, University of California, Berkeley. Invited speaker and session chair
-- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, October 29-November 5, Strasbourg, France. 
-- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2015, October 29-November 5, San Diego, United States.
-- Technology and Instrumentation in Particle Physics 2015, June 2-6, Amsterdam, Netherlands. 
+- IEEE Symposium on Radiation Measurements and Applications 2016, University of California, Berkeley. Invited speaker and session chair
+- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2016, Strasbourg, France. 
+- IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Workshop 2015, San Diego, United States.
+- Technology and Instrumentation in Particle Physics 2015, Amsterdam, The Netherlands. 
+- 34th International Cosmic Ray Conference 2015, The Hague, The Netherlands.
 
 
 ### Publications
