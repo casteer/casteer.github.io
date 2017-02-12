@@ -8,11 +8,12 @@
 - Matlab 
 - Geant4
 - ROOT/RooFit
-- 
+- Markdown developement i.e. Grav and Jekyll
 
 ### Hardware
 
-- 
+- Nuclear Instrumentation 
+- Environmental sensing
 
 ### Courses
 
