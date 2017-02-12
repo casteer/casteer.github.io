@@ -2,7 +2,8 @@
 
 ### Research Interests and Experience
 
-- Interactions of cosmic rays, the environment, and their industrial applications
+- Interactions of cosmic rays and the environment
+- Industrial applications of cosmic rays
 - Instrumentation for particle detection and environmental sensing
 - Hyperspectral satellite image analysis
 - Image and data analysis algorithm development, particularly image fusion and registration
