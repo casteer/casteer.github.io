@@ -9,16 +9,21 @@
 - Geant4
 - ROOT/RooFit
 - Markdown developement i.e. Grav and Jekyll
+- Algorithm development 
+- Hyperspectral satellite image analysis
+- Image and data analysis algorithm development, particularly fusion and registration
 
 ### Hardware
 
 - Nuclear Instrumentation 
 - Environmental sensing
+- Magnetic materials characterisation techniques i.e. SQUID and AC magnetic susceptometry, X-ray diffraction, four-point resisitivity
 
 ### Courses
 
 - Module convenor for 3D Manufacturing at St Mary's University, Twickenham 
-- Laboratory supervision 
+- Laboratory supervision
+- Undergraduate tutorials in Condensed Matter Physics at Keble College, Oxford. 
 
 ### Research Experience
 
