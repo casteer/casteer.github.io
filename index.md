@@ -15,7 +15,7 @@
 
 ### Hardware
 
-- Nuclear Instrumentation 
+- Nuclear Instrumentation Design and Build
 - Environmental sensing
 - Magnetic materials characterisation techniques i.e. SQUID and AC magnetic susceptometry, X-ray diffraction, four-point resisitivity
 
