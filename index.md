@@ -1,21 +1,23 @@
 
 ### Research Interests and Experience
 
-- Interactions of cosmic rays and the environment
-- Industrial applications of cosmic rays
 - Instrumentation for particle detection and environmental sensing
+- Additive manufacturing and mechanical design
+- Mathematical modelling of sensors 
+- Industrial applications of cosmic rays
 - Hyperspectral satellite image analysis
 - Image and data analysis algorithm development, particularly image fusion and registration
 
 ### Software
 
+- OnShape / OpenSCAD
 - Python
 - C++ 
 - Qt
 - Matlab 
 - Geant4
 - ROOT/RooFit
-- Markdown developement i.e. Grav and Jekyll
+- Markdown for Web developement i.e. Grav and Jekyll
 
 ### Hardware
 
