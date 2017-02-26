@@ -13,5 +13,7 @@ I was interested in the artificial muscle itself and less so about integrating t
 
 ![Automatic Artificial Muscle Winder](images/artificial_muscle_winder.png)
 
+The upper NEMA14 stepper actually performs the coiling. The lower stepper moves the upper filament guide to or away from the upper stepper. 
+
 The design is based in the cloud at [OnShape](https://cad.onshape.com/documents/d8cfb3fe114fd1b4f46390e4/w/83a8605fd9dbd7406fb6c8f0/e/be26834f6866e28efb1d0bc9)
 
