@@ -1,0 +1,517 @@
+\section{The General Additive Manufacturing Design Flow}
+
+
+Although there are a variety of different techiques, the steps involved in producing parts can be generalised and are common to all. 
+
+\begin{enumerate}
+ \item  \textbf{Computer-aided-design (CAD)}: CAD software is available as a tool for the designer, engineer or physicist and used to draw the 3D model of the part. 
+ \item  \textbf{Export model surface data file}: This step exports the 3D model's surface data in a file for slicing
+ \item  \textbf{Slicing and g-code export}: This utilises the parameters of the machine set-up in order to slice the model. This step also provides the path of the printhead for each slice and any other necessary commands, such as modifying the printhead speed or temperature of any heaters. This step may also introduce structures to aid the job which may include removable supports. 
+ \item  \textbf{Machine set-up}: Before printing, the machine will need to be correctly set-up. This may include the levelling of the bed, homing of the printhead, or warming up heaters. 
+ \item \textbf{Print}: This step is when the machine is used to print the object. Care ought to be taken as environmental conditions, incorrectly set-up machine, or an accident may result in a failed print. 
+ \item \textbf{Part removal and clean-up} : The part must be separated from the bed and cleaned up ready for the application. This could include removing any unwanted structures from the part, or chemical processing or sanding to smooth surfaces down. 
+\end{enumerate}
+
+\newpage
+\section{Step 1 : Computer aided part design for Additive Manufacturing}
+
+\subsection{Design for Additive Manufacturing}
+
+Parts for additive manufacturing can be designed quite easily by the newcomer. There are several important areas to think about: 
+\begin{itemize}
+ \item Is the design printable? There are limitations to printing design on 3D printers and its important to be mindful of these. These limitations include issues such as size (is the object too big?), time to print (how long will it take to print? And is the printer ok to leave for a long time?), hard-to-print design features (are there any overhangs? Or does the object have a small based in contact with the print bed for FFF?).
+ \item What does each feature of the design need to do? Does it do this? For example, here we could be thinking about 3D printed shoes; in which case, quick calculations of the weight and load on the shoes and whether the shoe can do this would be helpful. 
+\end{itemize}
+
+If you need to communicate the design to someone else, it's important to think about: 
+\begin{itemize}
+ \item Have you included all the dimensions you need to? 
+ \item What are the units of the dimensions? 
+ \item Which material is it to be printed from? 
+ \item How does this part fit to another or an assembly? 
+\end{itemize}
+
+Many CAD packages are available including: 
+\begin{itemize}
+ \item OpenSCAD : Parametric modelling tool (developed by 3D printing community)
+ \item Solidworks : Used by design engineers, GUI-based
+ \item SketchUp :  Also used within community, GUI-based
+ \item FreeCAD : Open source GUI-based CAD package 
+ \item Rhino : Design modelling tool  
+\end{itemize}
+
+There are also online browser based software : www.tinkercad.com, www.3dtin.com, www.onshape.com
+
+
+\subsection{Programmatic CAD using OpenSCAD}
+
+There are many options to use to develop your designs. As a Physicist, I'm more comfortable with code than graphical user interfaces and actually prefer the ability to modularise the code. Along this vein, OpenSCAD is a very popular tool with the community that has also been extended with a number of libraries to provide, for example, screw threads or bevels and so on. 
+
+The OpenSCAD cheat sheet remains the most immediate source of syntax for the intermediate user. 
+
+The best way to learn OpenSCAD is by writing code and experimenting with the different commands. Here I take two approaches, the first is through a number of worked examples and I include a number of worksheets for the interested student. 
+
+\subsection{Creating a simple box}
+
+The first thing to note is that OpenSCAD doesn't necessarily specify its units. However, when they are translated to a surface file format, such as STL, and then to g-code, commands that instruct the nozzle to move, the units are assumed to be in millimeters\marginnote{In fact, the majority of engineers assume that dimensions are in millimeters.}. In short, assume that the units are in millimeters and degrees. 
+
+So each command, that produces a shape, in OpenSCAD produces a solid shape. Let's produce a simple cube shape
+\begin{lstlisting}
+cube(100,center=true);
+\end{lstlisting}
+which is a cube with a side length of 100mm, centred at the origin. So now we'd like to make an empty box which is really a difference two shapes: A cuboid to describe the outer surface and a smaller one to describe the inner surface. 
+\begin{lstlisting}
+difference(){
+  cube(100,center=true);
+  cube(95,center=true);
+  }
+\end{lstlisting}
+which will create a hollow cube with a wall thickness of 5mm (the difference of the first 100mm cube and the second 95mm cube). However now, if this is rendered, the box will still look to be solid as we need to move the inner cube up to make an opening. 
+\begin{lstlisting}
+difference(){
+  cube(100,center=true);
+  translate([0,0,10])
+  cube(95,center=true);
+  }
+\end{lstlisting}
+So now the inner cube is centred on the point $\left(0,0,\textrm{10~mm}\right)$. The box has an opening and wall thicknesses of 5mm everywhere except for the base of the box, for which the wall thickness is 15mm (5mm plus the 10mm due to the translation). The makes the box feel very bottom-heavy so may not be desireable. To make the wall thickness 5mm everywhere we need to elongate the inner cube in the vertical direction. 
+\begin{lstlisting}
+difference(){
+  cube(100,center=true);
+  translate([0,0,10])
+  cube([95,95,110],center=true);
+  }
+\end{lstlisting}
+In order to make the lower wall have a thickness of 5mm, it must be at $\left(0,0,\textrm{-45~mm}\right)$. The inner cuboid is translated upwards by 10mm so before the translation the lower face must be at -55mm. Therefore we need a cuboid which is 110mm high. 
+
+
+
+
+
+
+
+\newpage
+\section{Step 2 : Exporting Surface Files and their Formats}
+
+\subsection{Stereolithography Tesselation Language (STL) file format}
+
+STL files encode the surface of the part as a number of triangles, which are also called facets. A surface is comprised of many facets sharing their edges and making the whole part watertight; watertightness mean that there are no gaps in the mesh through which fictional water may escape from. 
+
+As the triangular faceted surface is an approximation of many smooth surfaces, there is a trade-off between the accuracy of a model and the size of the file. For example, a low resolution model of the famous Stanford Bunny model\sidenote{The Stanford Bunny is so famous in computer vision circles that it has its own Wikipedia page \url{https://en.wikipedia.org/wiki/Stanford_bunny}. There are a number of other models which are listed at \url{https://en.wikipedia.org/wiki/List_of_common_3D_test_models}.} comprising 33,000 vertices is around 3MB. A high resolution version of 135,000 vertices is around 13MB. 
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\textwidth]{./pictures/bunnies.png}
+ % bunnies.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{Four different triangular representations of the Stanford Bunny model with increasing number of triangles from top-left to bottom-right.}
+ \label{fig:bunnies}
+\end{figure}
+
+
+STL files can be binary or ascii and the typical file contain many facets. An example STL file for a unit cube, produced using OpenSCAD, is shown in Table \ref{stl}. The STL listing shows the syntax: a model is contained between the commands\sidenote{n.b. [name] is a label for the model in the STL file.} ``solid [name]'' and then ``endsolid [name]''. Each triangular facet is then between ``facet normal [vector]'' and\sidenote{n.b. [vector] is the components of the normal vector to the facet.} ``endfacet'', and the vertices coordinates are contained with ``outer loop'' and ``endloop''. Each triangle vertex has the format ``vertex [coordinates]''\sidenote{n.b. Replace [coordinates] with the three coordinate of each vertex.}. 
+
+\begin{figure}[ht!]
+ \centering
+ \includegraphics[width=0.8\textwidth]{./pictures/unitcube.png}
+ % unitcube.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{The unit cube model and lines indicating facets. This model corresponds to the STL listing in Table \ref{stl}.}
+ \label{fig:unitcube}
+\end{figure}
+
+
+[Exercise to take the rabbit model and reduce the number of triangles with meshcad]
+
+% Struggle to get this on a single page with tiny font
+\begin{margintable}
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[lineskip=-4.5pt,basicstyle=\tiny]
+solid OpenSCAD_Model
+  facet normal -0 0 1
+    outer loop
+      vertex 0 1 1
+      vertex 1 0 1
+      vertex 1 1 1
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 1 0 1
+      vertex 0 1 1
+      vertex 0 0 1
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 0 0
+      vertex 1 1 0
+      vertex 1 0 0
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 1 1 0
+      vertex 0 0 0
+      vertex 0 1 0
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 0 0 0
+      vertex 1 0 1
+      vertex 0 0 1
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 1 0 1
+      vertex 0 0 0
+      vertex 1 0 0
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 1 0 1
+      vertex 1 1 0
+      vertex 1 1 1
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 1 1 0
+      vertex 1 0 1
+      vertex 1 0 0
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 1 1 0
+      vertex 0 1 1
+      vertex 1 1 1
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 0 1 1
+      vertex 1 1 0
+      vertex 0 1 0
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 0 0 0
+      vertex 0 1 1
+      vertex 0 1 0
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 0 1 1
+      vertex 0 0 0
+      vertex 0 0 1
+    endloop
+  endfacet
+endsolid OpenSCAD_Model
+\end{lstlisting}
+\end{minipage}
+\caption{The STL listing for a unit cube, produced using OpenSCAD.}
+\label{stl}
+\end{margintable}
+
+
+\subsection{Additive Manufacturing File Format (AMF)}
+
+The AMF file format is a newer and more complex object description language which allows the designer to include material and other metadata with the surface file. AMF is based on the extensible markup language (XML) in which sections are book-ended by \begin{verbatim} <tag> \end{verbatim} and \begin{verbatim} </tag> \end{verbatim} pairs. 
+
+In AMF files, the tag \begin{verbatim} <object> \end{verbatim} starts an object description 
+
+\newpage
+\begin{margintable}
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[lineskip=-4.5pt,basicstyle=\tiny]
+<?xml version="1.0" encoding="UTF-8"?>
+<amf unit="millimeter">
+ <metadata type="producer">OpenSCAD 2015.03-1</metadata>
+ <object id="0">
+  <mesh>
+   <vertices>
+    <vertex><coordinates>
+     <x>-0.5</x>
+     <y>-0.5</y>
+     <z>-0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>0.5</x>
+     <y>-0.5</y>
+     <z>-0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>0.5</x>
+     <y>-0.5</y>
+     <z>0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>-0.5</x>
+     <y>-0.5</y>
+     <z>0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>-0.5</x>
+     <y>0.5</y>
+     <z>0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>-0.5</x>
+     <y>0.5</y>
+     <z>-0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>0.5</x>
+     <y>0.5</y>
+     <z>0.5</z>
+    </coordinates></vertex>
+    <vertex><coordinates>
+     <x>0.5</x>
+     <y>0.5</y>
+     <z>-0.5</z>
+    </coordinates></vertex>
+   </vertices>
+   <volume>
+    <triangle>
+     <v1>0</v1>
+     <v2>1</v2>
+     <v3>2</v3>
+    </triangle>
+    <triangle>
+     <v1>3</v1>
+     <v2>0</v2>
+     <v3>2</v3>
+    </triangle>
+    <triangle>
+     <v1>3</v1>
+     <v2>4</v2>
+     <v3>0</v3>
+    </triangle>
+    <triangle>
+     <v1>0</v1>
+     <v2>4</v2>
+     <v3>5</v3>
+    </triangle>
+    <triangle>
+     <v1>3</v1>
+     <v2>2</v2>
+     <v3>6</v3>
+    </triangle>
+    <triangle>
+     <v1>4</v1>
+     <v2>3</v2>
+     <v3>6</v3>
+    </triangle>
+    <triangle>
+     <v1>5</v1>
+     <v2>7</v2>
+     <v3>0</v3>
+    </triangle>
+    <triangle>
+     <v1>0</v1>
+     <v2>7</v2>
+     <v3>1</v3>
+    </triangle>
+    <triangle>
+     <v1>1</v1>
+     <v2>7</v2>
+     <v3>6</v3>
+    </triangle>
+    <triangle>
+     <v1>2</v1>
+     <v2>1</v2>
+     <v3>6</v3>
+    </triangle>
+    <triangle>
+     <v1>4</v1>
+     <v2>6</v2>
+     <v3>5</v3>
+    </triangle>
+    <triangle>
+     <v1>5</v1>
+     <v2>6</v2>
+     <v3>7</v3>
+    </triangle>
+   </volume>
+  </mesh>
+ </object>
+</amf>
+\end{lstlisting}
+\end{minipage}
+\caption{The AMF format listing for a unit cube, produced using OpenSCAD.}
+\label{stl}
+\end{margintable}
+
+
+
+\newpage
+\section{Step 3 : Slicing the CAD Model}
+
+\subsection{Software}
+
+There are several software programs that can slice a CAD model and produce g-code, describing the motion of the printhead in each layer. 
+These include but more may be available by the time you read this:  
+\begin{itemize}
+ \item Cura : \url{https://ultimaker.com/en/products/cura-software}
+ \item Craftware : \url{https://craftunique.com/craftware}
+ \item Simplify3D : \url{https://www.simplify3d.com/}
+ \item Slic3r : \url{http://slic3r.org/}
+ \item IceSL : \url{https://members.loria.fr/Sylvain.Lefebvre/icesl/}
+\end{itemize}
+A nice summary is also available at \url{https://all3dp.com/best-3d-printing-software-tools/}
+
+\subsection{Glossary of slicing parameters}
+
+The focus here is on parameters used in fused deposition modelling: 
+
+[How do these differ for other techniques?]
+
+\textbf{Layer Height :} As the name suggested, the layer height is the distance that the printhead moves vertically away from thesurface for each layer. The print quality can be quite sensitive to the layer height: If the layer height is set too high and the filament as it exits the nozzle will cool and not stick to the previous layer. If the layer height is too low then will ooze out of the side of the nozzle as it is pushed on to the previous layer, which will mean that the exterior of the part and any surfaces become rough\sidenote{There is a nice layer height calculator at \url{http://prusaprinters.org/calculator/} , which ensures that the layer height is a integer multiple of the step from the motors.}.
+
+\textbf{Shell Thickness :} The shell thickness is the number of filament roads around the edge of the model in each slice. The shell thickness ought to be close to being a multiple of the road thickness and close to the nozzle diameter. 
+
+\textbf{Infill Pattern:} For the interior regions of the part, most of the time it does not make sense to completely fill it with plastic. So a fill pattern provides the part's strength without using too much filament that may add weight to the part.\sidenote{The honeycomb conjecture states that the optimal way to divide a surface into regions of equal area with the least amount of perimeter is to have a regular hexagonal grid. The ratio of the perimeter to area is $\sqrt[4]{12}$ which has been proved mathematically to be a minimum for the honeycomb structure.} 
+
+\textbf{Inill Density :}  As a designer, you have control over how much fill is printed by the fill density. The fill density is expressed as a percentage, so that 20\% means that one-fifth of the surface will be covered by plastic and the rest left empty. 
+
+\textbf{Support :} Bridges are regions of a printed item that are not supported underneath by a previous layer of plastic when it is being printed. Without a supporting structure there is a limit to the length and angle to the horizontal that bridges can be successfully printed. Supports can be added by slicing programs that help to print bridge structures. 
+
+\textbf{Print Speed :} The print speed directly affects the feasibility and quality of the prints. With fused filament fabrication systems, the mass of the molten filament leaving the nozzle is conserved so that a faster print speed means less material is deposited, and for good prints a thinner layer is needed for the same nozzle diameter. [SL systems similar effect in conservation of photon number...]
+
+\subsection{G-code : The 3D Printer Machine Code}
+
+The g-code contains the specific commands to the firmware that controls the stepper motors on the printer. There are two main types: \textbf{G***} commands move the printhead and the feedrate; \textbf{M***} commands set parameters of the system. See appendix 1 of this chapter for a reference list of g-code commands. 
+
+\newpage
+\section{Step 4: Machine Set-Up}
+
+So this could include several different aspects of machine set-up which for FDM could be the temperature and levelling of the heated bed, setting the zero of the coordinate axis, the 
+
+Machine set-up: Before printing, the machine will have to be set-up. This may include the levelling of the bed, homing of the printhead, or warming up heated extruder. This is usually handled by the slicing software. 
+
+\newpage
+\section{Step 5: Printing }
+
+Print 
+
+\newpage
+\section{Step 6: Removal and Clean-up}
+
+Part removal and clean-up : The part must be separated from the bed and cleaned up ready for the application. This could include removing any unwanted structures from the part, or chemical processing or sanding to smooth surfaces down. 
+
+\subsection{Support and burr removal}
+
+Printing overhanging structures may require support features and these will need to removed to finalise the model. The first step is cutting them away which can be achieved using fine pair of snips. Unfortunately this may leave a burr on the surface of the part which needs to be removed through sanding. 
+
+\subsection{Smoothing a model's surface}
+
+The layered printing process may result in a stepped appearance on the surface and it is desirable to smooth this out. There have been various attempts to do this: 
+\begin{itemize}
+ \item Sanding - using coarse to fine grit paper in circular motion in all stepped regions helps to smooth out the surface. This is applicable to the majority of printed materials. 
+ \item Lacquer - XTC-3D has been used with PLA before. 
+ \item Chemical vapour smoothing - Acetone is used with some plastics, notable ABS, but is not applicable to others (i.e. PLA). Other chemicals can be used for PLA, such as Ethyl Acetate. 
+\end{itemize}
+
+In order to obtain a smooth surface 
+
+[Support removal] 
+
+[Acetone smoothing]
+\url{http://airwolf3d.com/2013/11/26/7-steps-shiny-finish-on-abs-parts-acetone/}
+\url{http://3dprinting.stackexchange.com/questions/11/how-do-i-give-3d-printed-parts-in-pla-a-shiny-smooth-finish}
+
+\url{http://blog.fictiv.com/posts/ultimate-guide-to-finishing-3d-printed-parts}
+\url{http://makezine.com/projects/make-34/skill-builder-finishing-and-post-processing-your-3d-printed-objects/}
+\url{https://www.youtube.com/watch?v=GSKxycs3kPg}
+
+Taxonomy of Z-axis defects... 
+\url{https://www.evernote.com/shard/s211/sh/701c36c4-ddd5-4669-a482-953d8924c71d/1ef992988295487c98c268dcdd2d687e}
+
+
+\newpage
+\begin{landscape}
+\vspace*{-2cm}
+\section{Appendix 1 : G-Code Commands}%
+\begin{longtable}{c|c|c}
+%\begin{tabular}{c|c|c}
+\pagebreak \hline \hline  \textbf{Command} & \textbf{Parameters} & \textbf{Description} \\
+\endfirsthead 
+\hline \hline  \textbf{Command} & \textbf{Parameters} & \textbf{Description} \\
+\hline
+\endhead
+\hline \multicolumn{3}{r}{\emph{Continued on next page}}
+\endfoot
+\endlastfoot
+
+\hline  \multicolumn{3}{l}{\textbf{Power Control}} \\
+  M80	& none	& Turn on ATX Power (if neccessary)\\
+  M81 	& none & Turn off ATX Power (if neccessary)\\
+  M40	& none & Eject part (if possible) \\
+  \hline \multicolumn{3}{l}{\textbf{SD Card Filesystem Control}} \\
+  M20 	& none	& List files at the root folder of the SD Card \\
+  M21	& none  & Initialise (mount) SD Card \\
+  M22	& none  & Release (unmount) SD Card \\
+  M23	& Filename & Select File for Printing \\
+  M24	& none 	& Start / Resume SD Card Print (see M23) \\
+  M25	& none & Pause SD Card Print (see M24) \\
+  
+  
+  M26	& Bytes & Set SD Position in bytes \\
+  M27	& none	& Report SD Print status \\
+  M28	& Filename & Write programm to SD Card \\ 
+  M29	& Filename & Stop writing programm to SD Card \\
+  \hline \multicolumn{3}{l}{\textbf{Extruder Control}} \\
+  M101	& none & Set extruder 1 to forward (outdated) \\ 
+  M102	& none & Set extruder 1 to reverse (outdated) \\
+  M103	& none & Turn all extruders off (outdated) \\
+  M104	& Temperature & Set extruder temperature (not waiting) \\
+  M105 	& none & Get extruder Temperature \\
+  M108	& none & Set extruder speed (outdated) \\ 
+  M109	& Temperature & Set extruder Temperature (waits till reached) \\
+  M113	& <PWM [S]> & Set Extruder PWM to S (or onboard potent. If not given) \\
+  M126	& Time[P] & Open extruder valve (if available) and wait for P ms \\
+  M127	& Time[P] & Close extruder valve (if available) and wait for P ms \\
+  M128 & PWM[S] & Set internal extruder pressure S255 eq max \\
+  M129	& Time[P] & Turn off extruder pressure and wait for P ms \\
+  M143	& Degrees[S]	& Set maximum hot-end temperture \\
+  M160 	& No.[S] 	& Set number of materials extruder can handle \\
+  T	& No. & Select extruder no. (starts with 0) \\
+  \hline \multicolumn{3}{l}{\textbf{Miscellaneous}} \\
+  M41	& none & Loop Programm(Stop with reset button!) \\
+  M42	& none & Stop if out of material (if supported) \\ 
+  M43	& none & Like M42 but leave heated bed on (if supported) \\
+  M84 	& none & Stop idle hold (DO NOT use while printing\!) \\
+  M92	& Steps per unit & Programm set S steps per unit (resets) \\ 
+  M106	& PWM Value & Set Fan Speed to S and start \\
+  M107	& none & Turn Fan off \\ 
+  M110	& Line Number & Set current line number (next line number = line no. +1) \\
+  M111	& Debug Level[S] & Set Debug Level \\ 
+  M112	& none & Emergency Stop (Stop immediately) \\
+  M114 	& none & Get Current Position \\
+  M115	& none & Get Firmeware Version and Capabilities \\
+  M116	& none & Wait for ALL temperatures \\
+  M117	& none & Get Zero Position in steps \\
+  M119	& none & Get Endstop Status \\ 
+  M140	& Degrees[S]	& Set heated bed temperature to S (not waiting) \\
+  M141	& Degrees[S]	& Set chamber temperature to S (not waiting) \\
+  M142 	& Pressure[S]	& Set holding pressure to S bar \\
+  M203	& Offset[Z]	& Set Z offset (stays active even after power off) \\
+  M226	& none	& Pauses printing (like pause button) \\
+  M227	& Steps[P/S] & Enables Automatic Reverse and Prime \\
+  M228	& none 	& Disables Automatic Reverse and Prime \\
+  M229	& Rotations[P/S] & Enables Automatic Reverse and Prime \\
+  M230	& [S] & Enable / Disable wait for temp.(1 = Disable 0 = Enable) \\ 
+  M240	& none & Start conveyor belt motor \\
+  M241	& none & Stop conveyor belt motor \\
+  M245	& none & Start cooler fan \\
+  M246	& none & Stop cooler fan \\
+  M300	& Freq.[S] Duration[P] & Beep with S Hz for P ms \\
+  \hline \hline 
+%  \end{tabular}
+\caption{A listing of g-code commands}
+\end{longtable}
+\end{landscape}

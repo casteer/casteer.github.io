@@ -1,0 +1,175 @@
+
+
+\chapter{Overview}
+
+
+
+
+\section{Print properties}
+
+\section{Printing in layers}
+
+Additive manufacturing is a term developed later on in the development of 3D printing to describe the common property of adding materials to the part being produced.Adding materials in layers results in new possible stuctures as the designer has access to the interior of the model during production. This is not usually the case for conventional manufacturing means and opens up the possibility of printing many different types of joints and motion from a single piece. 
+
+Two examples are shown in Figures \ref{fig:quad_bearings} and \ref{fig:articulated_elephant} in which joints giving a spinning motion, for the nested bearings, or articulation for the elephant toy's legs and trunk are printable. 
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=0.8\textwidth]{./pictures/Quad-Bearings.png}
+ % Quad-Bearings.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{An illustration of the ability of 3D printed items to produced spinning joints. After printing the joints must be worked so that the item is spinning freely. \url{http://www.thingiverse.com/thing:1478386}. }
+ \label{fig:quad_bearings}
+\end{figure}
+
+
+\begin{figure}[h]
+ \centering
+ \includegraphics{./pictures/elephant_articulated.png}
+ % elephant_articulated.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{An elephant with articulated legs illustrating a slightly different joint type \url{http://www.thingiverse.com/thing:257911}. }
+ \label{fig:articulated_elephant}
+\end{figure}
+
+The only constraint is that the joint must somehow be attached to the previous layer, even if it is by a small area. When the part has finished printing, it is lifted from the bed and the joint freed of the attachment.
+
+There are numerous benefits of AM techniques: There is little or no material or energy wastage, especially compared to conventional means, as only the necessary material is added; new structures can be produced given tha the techniques 
+
+\textbf{Producing parts by successively adding new material, typically in layers, is a characteristic that all AM techniques share.}
+
+\subsection{Alternative Names for the Additive Manufacturing}
+
+Whilst grappling to describe the new and emerging process of AM, various terminology has been so it's important to be aware that alternative terminology may be used including: 
+\begin{itemize}
+ \item Additive manufacturing
+ \item (Solid) Freeform fabrication 
+ \item Automated fabrication 
+ \item 3D printing - this was originally a specific technique but has since been come to mean the whole community and category of techniques, at least colloquially. 
+ \item Stereolithography - this is a specific, and the original, AM technique and not the class of techniques 
+ \item Rapid prototyping 
+\end{itemize}
+
+
+\section{The Taxonomy of 3D Printing Techniques}
+
+There are many additive manufacturing techniques which are summarised in Figure \ref{fig:am_overviews}. These can be categorised as exploiting photopolymerisation, material extrusion, jetting, powder fusion, direct energy deposition and sheet lamination. The most well-known techniques are fused deposition modelling (also known as fused filament fabrication, or FFF) and stereolithography. 
+
+\begin{sidewaysfigure}[ht!!]
+ \centering
+ \includegraphics[width=\textwidth]{./graphics/additive-manufacturing-infographic_r10-06.png}
+ \caption{An overview of different techniques and manufacturers, provided by 3DHubs.}
+ \label{fig:am_overviews}
+\end{sidewaysfigure}
+
+
+\subsection{Solidification Processes}
+
+Local solidification of the material feedstock is a key aspect of AM techniques and various approaches have been taken. These solidification processes include: 
+\begin{itemize}
+ \item \textbf{Curing}: The solidification of ultraviolet-sensitive polymer resin which is initially fluid and a curing, or photopolymerisation, process is induced by focussing a laser spot on the resin. The curing process causes the resin to solidify locally where the laser interacts with the resin. 
+ \item \textbf{Jetting/Extrusion}: Extrusion is the process of heating material to a point where it becomes fluid, it is deposited on a print surface, cools and solidifies. Jetting is a very similar process that may involve a chemical process and may not necessary involve heat 
+ \item \textbf{Sintering}: The density of powders can be greatly increased by heating, promoting the diffusion of atoms and the growth in size of powder grains. Heating can be applied by a high-powered laser in order to solidify a part in a layer-by-layer manner. 
+ \item \textbf{Binding}: Binding is when an epoxy or glue is introduced to a powder bed in areas of a layer where solidification is required. 
+ \item \textbf{Lamination}: Lamination is the process of placing sheets of material down and cutting them to form the part. 
+\end{itemize}
+
+  
+\subsection{Material Feedstock Types }
+
+In all of additive manufacturing techniques, there must be some way of introducing material to the print volume where it is needed. There are a number of options 
+\begin{itemize}
+ \item \textbf{Powder}: Powder is one feedstock and can be used as a bed, with suitable binder, melting, or sintering means to produce the local solid region in the print item. 
+  \item \textbf{Filament}: Pushing filament into a means of transforming it into a solid in the print area is also quite common. This has been used with melting of plastic and welding of metal filaments. 
+  \item \textbf{Photosensitive resin}: Photopolymer resin can be made to solidify under the action of an ultraviolet or blue laser. 
+  \item \textbf{Sheet}: 
+\end{itemize}
+
+\subsection{Categories of Additive Manufacturing Techniques}
+
+Given the combination of solidifiation process and material feedstock, it is possible to now classify the many techniques that are available to the desginer: 
+
+\textbf{Vat Photopolymerization}
+
+Photosensitive resin seems a miraculous material - viscous liquid when unreacted and solid when not. By combining a resin vat with a laser or ultraviolet light to draw the solid parts of each layer, these techniques can produce very high resolution parts in the solid photopolymer plastic resin. 
+
+\textbf{Material Extrusion}
+
+Fused deposition modelling, also known as fused filament fabrication, is a very common method that is often the entry level technique for many newcomers to the area. A filament is pushed by a stepper motor into a hot region in the extruder, which then melts and successive filament increases the pressure, pushing it out of the small diameter hole in the extruder. As it leaves the nozzle, the filament is placed on either the printbed or a previous layer where it bonds and solidifies as it cools. The area of extrusion prints plastics and plastics doped with other materials, such as metal powder or advanced materials such as graphene. 
+
+\textbf{Material Jetting}
+
+Material jetting introduces the material onto the print surface and immediately solidifies using an suitable method. The jetted material can vary quite alot from plastic, metal and wax with UV light, heat curing, and cooling solidification methods 
+
+\textbf{Powder Bed Fusion}
+
+Powder bed fusion techniques place smoothed powder layers 
+
+\textbf{Direct Energy Deposition}
+
+\textbf{Sheet Lamination}
+
+
+
+
+
+\subsection{Time taken for passing a printhead over a layer} 
+
+As the main characteristic of additive manufacturing is the layered production of objects, we can consider the simplest situation when the printer is covering a rectangular region in the $x$ and $y$ directions with a length $L$ and width $W$ in these respective directions. Let the speed of the print head be $v_{x}$, the suffix indicates than the printhead mostly in the $x$ direction. 
+
+The time taken for one line in the $x$ direction is then $\frac{L}{v_{x}}$, the printhead then move one linewidth in a vertical direction and moves in the opposite direction of $x$. The time taken to step a linewidth along $y$ is $\frac{L_{w}}{v_{x}}$, where we assume that the printhead moves at a constant speed. 
+
+The number of lines in $x$ is $N_{x} = \frac{W}{L_{w}}$. 
+
+The total time taken to cure the rectangular region is 
+\begin{equation}
+  t = \frac{W}{v_{x} L_{w}} \left( L + L_{w} \right). 
+\end{equation}
+
+For a general and fully-covered region of area $A$, the time taken will be of the order of $\sim \frac{A}{v_{x} L_{w}}$. The time to cover an area fully varies inversely with the linewidth, indicating one of the main trade-offs with additive manufacturing - namely that finer prints take longer. 
+
+\section{Fill-in for interior regions}
+
+[Types of filling in and the choice of one or the other]
+
+\subsection{Hexagonal fill}
+
+\subsection{Rectilinear fill}
+
+\subsection{Fused Deposition Modelling Overview}
+
+
+\begin{center} 
+\begin{figure}[h!!]
+ \centering
+ \includegraphics[width=0.8\textwidth]{./graphics/process_fdm.png}
+ % process_fdm.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{A schematic of the fused deposition modelling process.}
+\end{figure}
+\end{center}
+
+% \subsection{Fused Deposition Modelling Overview}
+% 
+% \begin{figure}[h]
+%  \centering
+%  \includegraphics[width=0.8\textwidth]{./graphics/process_lom.png}
+%  % process_lom.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+%  \caption{A schematic of the fused deposition modelling process.}
+% \end{figure}
+
+\subsection{Stereolithography Overview}
+
+\begin{figure}[h!!]
+ \centering
+ \includegraphics[width=0.8\textwidth]{./graphics/process_sl.png}
+ \caption{A schematic of the stereolithography additive manufacturing process.}
+\end{figure}
+
+
+% \begin{center} 
+% \begin{figure}[h]
+%  \centering
+%  \includegraphics[width=0.8\textwidth]{./graphics/process_dmls.png}
+%  % process_dmls.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+%  \caption{An illustrative Direct metal laser sintering}
+% \end{figure}
+% \end{center}
+

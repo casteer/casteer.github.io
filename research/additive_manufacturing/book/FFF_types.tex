@@ -1,0 +1,251 @@
+% \documentclass[]{article}
+% % \usepackage[numbers,sort]{natbib}
+% \usepackage{url}
+% \usepackage{graphicx}
+% \usepackage{amsmath}
+% 
+% 
+% %opening
+% \title{Fused Filament Fabrication Systems}
+% \author{Chris Steer}
+% 
+% \begin{document}
+% \bibliographystyle{unsrt}
+% 
+% \maketitle
+% 
+% \begin{abstract}
+% This note describes two types of FF systems: Cartesian and delta 3D fused filament fabrication systems. 
+% \end{abstract}
+
+\section{Fused Filament Fabrication (FFF) Printing Systems}
+
+Fused filament fabrication systems produce three-dimensional objects through the adding molten material to each layer at the designed positions. FFF system include: the motion system, which is a mechanism to move the hot end to the desired place in the print; the hot end and extrusion of the filament itself. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/extrusion}
+\caption{A schematic of fused filament deposition in which solid filament is pushed into a hot nozzle. Inside the hot nozzle, the filament liquefies and is pushed out of a small hole in order to form the material for the new layer. The nozzle and/or the build plate may move when placing new material on the printed part.}
+\label{fig:extrusion}
+\end{figure}
+
+Commercial filament is standardised to 1.75mm and 2.85mm (why?). 
+
+\section{Hot End Motion}
+
+As they are inexpensive and easily controlled, stepper motors are commonly used in FFF printers. 
+
+\subsection{Stepper Motors Description}
+
+Control electronics are detailed in a later section. 
+
+[NEMA standard motors - what does the designation mean]
+
+[Discussion of the torque ratings and force required for motion]
+
+\subsection{Printer Coordinate Systems}
+
+Prior to starting the printing will need to home itself. When this is started the operator will see the printer move the carriages to their maximum extent touching microswitches. When all of the microswitches are pressed then the control system will consider the printer to be homed. This home posiiton sets the printer's origin of their coordinate system. 
+
+\subsection{Cartesian Printers}
+
+Cartesian printers use stepper motors to move the nozzle head in perpendicular directions. This system produces linear movement in one direction by stepping a motor attached to a drive mechanism corresponding to that direction; so there is a X-direction stepper motor, a Y-direction stepper motor, and a Z-direction stepper motor. 
+
+There are variations in Cartesian designs that could be any of the following: 
+\begin{itemize}
+	\item As is the case with the Prusa design, there is may be more than one motor per axis. 
+	\item The stepper motor drive mechanism can be a toothed belt, screw thread, or fishing line.
+	\item The framework can vary significantly such as a bar (e.g. Reprap Ormerod), triangular (e.g. Reprap Mendel) to rectangular frame (e.g. Prusa variants); 
+	\item The extruder design can also vary between printer types
+	\item In some printer designs, the bed may move along one or more axes too. 
+\end{itemize}
+    
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/ormerod-complete}
+\caption{A picture of an assembled Reprap Ormerod. Note the bar design of the horizontal, typically labelled X, axis.}
+\label{fig:ormerod-complete}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/500px-Reprappro-Mendel}
+\caption{A picture of an assembled Reprap Mendel with a characteristic triangular framework.}
+\label{fig:500px-Reprappro-Mendel}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/prusai3}
+\caption{A picture of an assembled Prusa i3 printer with a vertical rectangular framework.}
+\label{fig:prusai3}
+\end{figure}
+
+\subsection{Delta Printers}
+
+The delta motion system was originally developed for PCB production in which electronic components are picked from their storage box and placed on the PCB. An example of this system is shown in Figure \ref{fig:pick_and_place}.  
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/pick_and_place}
+\caption{Example pick and place robots based upon the delta mechanism. }
+\label{fig:pick_and_place}
+\end{figure}
+
+The Rostock printer is an archetypal delta printer. The three arms are each moved vertically up and down by stepper motors in the base of the printer. As the arms are fixed in length, and hinged at both joints on the carriage and effector, the head can be made to move to the desired position by changing the vertical height of one of the stepper motors. In order to maintain print speed, the head is made to be as light as possible with the extruder stepper motor separate from the nozzle. In Figure \ref{fig:rostock}, for example, there is a white ('Bowden') tube guiding the filament from the extruder stepper motor, which is mounted on the frame in the rear, to the nozzle. 
+
+The benefits of the delta design over the Cartesian design are that it is typically faster and cheaper than Cartesian printers. Another marginal issue is that there are signficant computational demands of converting g-code to delta printer stepper motor movements. Consequently, the embedded computer control system is typically more powerful (and more expensive) than Cartesian printers. For some filaments which have a significant roughness on the reel, the Bowden tube can cause significant friction and create problems to do with the retraction of filaments in this design. There is a nice discussion of the benefits and disadvantages of delta printers at \cite{delta_url}. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/450px-Rostock}
+\caption{The Rostock 3D printer with its characteristic three vertical carriages; the carriages move up and down changing the position of the nozzle within the effector head just above printed voronoi Klein bottle. }
+\label{fig:rostock}
+\end{figure}
+
+
+\subsection{Maths of Delta Coordinates}
+
+The carriage supports of a Delta printer lie at the corners of a triangle. 
+
+
+\subsection{Comparison of drive method}
+
+Compare belt, string, or lead screw driven motion system
+
+
+\section{Filament Motion}
+
+The filament undergoes heating through its glass and then its melting transition. At the glass transition, the filament material becomes rubbery and expands increasing the pressure within the nozzle. The filament also grips the interior of the barrel and, if the melting zone is too long, may cause jamming in the nozzle. At the melting point the filament becomes liquid and so it can be extruded out from the small hole at the farthest point of the hot end\sidenote{For more information on the design aspects of different extruder designs can be found in references \cite{extruders, reprap_hotend}.}. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/nozzle_schematic}
+\caption{A schematic of a typical extrusion nozzle, indicating the melt zone area.}
+\label{fig:nozzle_schematic}
+\end{figure}
+
+[Discussion of the torque ratings and force required for pushing the filament through]
+
+The filament is pulled from its reel and into the nozzle. In some systems, mostly delta printers, an extra tube is used to guide the filament into the hot end\sidenote{This is known as a Bowden tube after ?????...}
+
+\subsection{Filament Materials}
+
+\subsection{Melt Zone}
+
+For constant print speed, the rate of liquid filament leaving the extrusion nozzle and solid filament entering the top of the nozzle are also constant. The filament leaving the barrel reduces the presure in the melt zone which is balanced by the increase in pressure of new filament being pushed in from the top. Modelling the extruder as a laminar flow in a tube, the volume flow rate depends on the nozzle extrusion hole radius $r$, material's viscosity $\eta$, pressure drop in the tube $\Delta P$, the melt zone length $L$, and is given by 
+\begin{equation}
+\frac{dV}{dt} = \frac{\pi r^{4} \Delta P}{8 \eta L}. 
+\end{equation}
+
+For a given print run, the pressure in the melt zone can be altered by changing the filament feed rate; so more solid filament means a higher pressure inside the melt zone and a larger pressure difference between this and the outside. 
+
+The size of the melt zone inside the nozzle is important, especially as to how responsive the nozzle is to fine details in contrast to printing at speed. Short melt zones give less time lag when the flow rate changed or filament retraction, especially when compared to longer melt zones. In contrast, longer melt zones permit faster printing through thicker layers, as a larger reservoir is available.  
+
+
+%The nozzle's orifice lengths can range from 0.24mm to 1.32mm depending on nozzle model \cite{nozzle_orifices}. 
+
+If the pressure in the barrel becomes too great then the extruder stepper motor may not be able to provide enough torque to push new filament into the melt zone. Consequently, the volume flow rate of filament is primarily limited by a limit in the maximum force applied to the new, solid filament and applied stepper motor torque. 
+
+\subsection{Euler Buckling}
+
+One failure mechanism that may occur is buckling of the filament, especially when the force applied to the solid ingoing filament is high. Euler derived a formula for the critical force $F_{\textrm{C}}$, at the point of buckling of a column fixed at both ends, which is given by 
+\begin{equation}
+F_{\textrm{C}} = \frac{4 \pi^{2} E I}{L_{\textrm{f}}^{2}}, 
+\end{equation}
+where $E$ is the elastic modulus, $I$ is the area moment of inertia, and $L_{\textrm{f}}$ is the length of the filament. The area moment for a circular cross-section is $\tfrac{\pi r_{\textrm{f}}^{4}}{4}$, where $r_{\textrm{f}}$ is the radius of the solid filament (for FFF systems the filament diameter is usually 1.75mm or 3mm). So 
+\begin{equation}
+F_{\textrm{C}} = \frac{\pi^{3} E r_{\textrm{f}}^{4} }{L_{\textrm{f}}^{2}}. 
+\end{equation}
+
+In order to avoid buckling, thickening and stiffening filament (which means a high $r_{\textrm{f}}$ and elastic modulus $E$ respectively), and reducing the length of filament between extruder motor and melt zone (reducing $L_{\textrm{f}}$), all help to minimise buckling failures. 
+
+As an order of magnitude example, let's assume that a given printer has a direct drive extruder with a 5mm radius hobbed bolt pushing the solid filament into the nozzle. Then, in this hypothetical example, we read that the stepper motor data sheet says that it can apply a maximum torque of 50 N cm, or a maximum force of the order of 100N using the hobbed bolt with a 5mm radius.  
+
+For 1.75mm diameter PLA filament with an the elastic modulus of 3.5 GPa and 5cm from the melt zone, we find that the critical force is 636N and buckling is unlikely. However, for rubberised and flexible filament, the elastic modulus is 25 MPa (see \cite{filament_discussion}), and so the critical force is 4.5N. Buckling is clearly more likely for this material and can be mitigated by reducing the distance to the melt zone. For example, if the extruder drive to melt zone distance is 1cm rather than 5cm, then the critical force for 1.75mm Ninjaflex is 114N and the stepper motor is less likely to cause filament buckling. 
+
+
+\section{Extruder designs and drive}
+
+\subsection{Direct drive}
+
+All FFF systems have a motor that forces new filament into the nozzle and molten filament out of the small (typically 0.4mm diameter) hole at the nozzle lower end. Typically the filament is gripped between a hobbed bolt and bearing. A hobbed bolt is shown in Figure \ref{fig:hobbed_bolts}. 
+
+% \begin{figure}[h!!!!!]
+% \centering
+% \includegraphics[width=0.7\textwidth]{pictures/hobbed_bolts}
+% \caption{Six hobbed bolts in which teeth have been cut into shaft of the bolts \cite{hobbed_bolts}.}
+% \label{fig:hobbed_bolts}
+% \end{figure}
+
+The simplest type of extruder is the direct drive, pictured in Figure \ref{fig:extruder_direct_drive}. This comprises a hobbed bolt on a stepper motor pressing the filament against a bearing. The ridges on the hobbed bolt grip and push the filament through and into the hot end. 
+
+\subsection{Geared drive}
+
+Designs with gears, which subsequently drive the hobbed bolt, have also been developed, which allow finer control of the filament feed rate through the effect of the gears. If, for instance, the stepper motor gear has 10 teeth and the filament drive gear has 43 teeth then ratio of force applied by the drive gear will be $\tfrac{43}{10} = $4.3 times the force applied by the stepper motor \cite{gears}. 
+
+Wade's extruder is a popular example and includes a geared system to turn the hobbed bolt. The herringbone gears provide extra leverage to push the filament into the extruder nozzle when compared to the direct drive version. 
+
+
+% \begin{figure}[h!!!!!]
+% \centering
+% \includegraphics[width=0.7\textwidth]{pictures/extruder_direct_drive}
+% \caption{A direct drive  extruder in which the hobbed bolt is mounted on the stepper motor's shaft. The filament is gripped between the hobbed bolt and a bearing (taken from \cite{direct_extruder})}
+% \label{fig:extruder_direct_drive}
+% \end{figure}
+% 
+% \begin{figure}[h!!!!!]
+% \centering
+% \includegraphics[width=0.7\linewidth]{pictures/geared_extruder}\\[0.5cm]
+% \includegraphics[width=0.7\linewidth]{pictures/geared_extruder_mounted}
+% \caption{Top : A geared extruder design (taken from \cite{geared_extruder}) in which the small gear is mounted on the stepper motor shaft which then turns the the larger gear. The hobbed bolt, which in this case has a hexagonal head, is mounted through the centre of the larger gear. The filament can be seen at the top of the picture. Bottom: This picture shows the same extruder design mounted on the printer \cite{geared_extruder}.}
+% \label{fig:geared_extruder}
+% \end{figure}
+
+The movement of the mass of the extruder and hot end can cause resonances (fundamental vibrations of the frame of the printer), leading to rippling of the surface near features. This effect is shown in \ref{fig:resonances}. 
+
+
+\section{Alternatives to Filament}
+
+Paste extrusion has been used to print chocolate and conductive paste....
+
+The wire delivery of (Bath MSc)...
+
+\section{Methods to assess the performance of FFF systems}
+
+
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=0.7\textwidth]{pictures/resonances}
+% 	\caption{An example of a surface defect produced by a resonance. Note the rippling which mimics the bar feature (taken from \cite{resonances}). }
+% 	\label{fig:resonances}
+% \end{figure}
+
+% \begin{thebibliography}{20}
+% 	\bibitem{delta_url} The benefits and disadvantages of delta printers are discussed here: \url{https://www.reddit.com/r/3Dprinting/comments/2ahmbp/what_are_the_pros_and_cons_of_the_rostock_delta/} and a discussion of geared and direct drive extruders for delta printers. 
+% he
+% 	\bibitem{extruders} For a good discussion of the issues involved with different extruder options, please see \url{http://forums.reprap.org/read.php?70,191725}.
+% 	
+% 	\bibitem{reprap_hotend} The hot end design is discussed at \url{http://reprap.org/wiki/Hot_End_Design_Theory}. 
+% 
+% 	\bibitem{filament_discussion} A discussion of filaments and their properties \url{http://forums.reprap.org/read.php?41,434821,483991}. 
+% 
+% 	\bibitem{hobbed_bolts} For a description of how to make a hobbed bolt, please see \url{http://www.thingiverse.com/thing:151669}. 
+% 
+% 
+% 	\bibitem{gears} Discussion of gears and how they affect the applied torque: \url{http://www.maelabs.ucsd.edu/mae_guides/machine_design/machine_design_basics/Mech_Ad/mech_ad.htm}.
+% 	
+% 	\bibitem{direct_extruder} A direct extruder with a Bowden tube: \url{http://www.thingiverse.com/thing:275593}. 
+% 
+% 	\bibitem{geared_extruder} An example of a geared extruder is available at \url{http://www.thingiverse.com/thing:961630}. 
+% 	
+% 	\bibitem{resonances} For a printed object to examine resonances, please see http://www.thingiverse.com/thing:8870. 
+% 
+% 
+% 
+% 	\bibitem{nozzle_orifices} Measurements of the lengths of example nozzle orifices: \url{http://jheadnozzle.blogspot.co.uk/2012/05/nozzle-orifice-measurements.html}.  
+% 	
+% 	
+% 	\bibitem{melt_zone} \url{http://3dprinting.stackexchange.com/questions/572/what-is-the-best-length-of-the-melting-zone-in-the-hotend}
+% \end{thebibliography}
+% 

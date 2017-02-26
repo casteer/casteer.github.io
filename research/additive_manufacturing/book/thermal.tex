@@ -1,0 +1,210 @@
+%----------------------------------------------------------------------------------------
+
+\section{Thermal transport background}
+
+\subsection{Thermal Diffusion Equation}
+
+Heat equation and its origins
+
+\subsection{Cylindrical coordinate systems}
+
+Nozzle almost invariably have a cylindrical symmetry so we can express the thermal diffusion equation in this cylindrical coordinate system. 
+
+\section{The Hot End : Applying heat to the filament}
+
+
+
+
+\section{The Heated Bed : Removing temperature gradients}
+
+\section{Thermal Transport Model}
+
+Typically with Fused Filament Fabrication (FFF) techniques a cylindrical cartridge heater is used. For the purposes of this calculation, we need to read the data sheet of the cartridge heater which will give the power $P_{C}$ in Watts (or J/s). From this we can calculate the heat energy flux (the heat energy per unit time per unit area) from the outer cylindrical surface $A_{C}$. We assume that heat energy is lost to the environment when it is radiated out of the circular top and bottom of the cylindrical cartridge heater. The heat energy per unit time per unit area is given by 
+\begin{equation}
+H_{C} = \frac{P_{C}}{A_{C}}. 
+\end{equation}
+
+The heat energy from the cartridge heater is transported to the filament melt zone typically through an aluminium block and then the outer brass cylinder of the extruder nozzle. We simplify this process and assume that the its efficiency is given by $\epsilon$, with typical values of the order of 1 to 5\% level (i.e. 1 to 5\% of the heat energy from the heater cartridge is transported to the melt zone). The amount of heat energy per unit time per unit area entering the melt zone is $\epsilon H_{C}$. 
+
+We now need to find two quantities: Firstly the amount of heat from the cartridge entering the melt zone and secondly the amount of energy required to cause a temperature change. 
+
+In order to calculate the amount of heat entering the melt zone, we need to find the area of the outer surface of the melt zone which is given by $A_{M}$. The heat flux (energy per unit time per area) from the cartridge is $\epsilon H_{C}$ as mentioned above. As this is passing through the outer surface area of the melt zone, we multiply this flux by the melt zone surface area $A_{M}$ to give the rate of energy passing into the melt zone, which is 
+\begin{equation}
+P_{M} = \frac{\epsilon P_{C} A_{M} }{A_{C}}
+\label{H}
+\end{equation}
+and gives the heat energy per unit time (in Watts) passing into the melt zone. 
+
+The second quantity, that we need to estimate, is the effect of this heat transport passing into the melt zone. This heat energy raises the temperature of the filament melt. The energy required to do this per temperature rise (in Kelvin) per mass of melt (in kg) is the specific heat capacity $C_{p}$ typically expressed in units of J K$^{-1}$ kg$^{-1}$. 
+
+So now we need to find the mass of the melt (in kg) to find how much energy is required to raise the temperature of the whole of the melt zone . 
+
+The mass of the filament melt is melt volume multiplied by its density $\rho$, or 
+\begin{equation}
+m = \rho V_{M}. 
+\end{equation}
+The heat capacity (the energy required for a unit temperature change) is then 
+\begin{equation}
+c = C_{p} \rho V_{M} 
+\label{C}
+\end{equation}
+which gives the amount of energy required for a temperature rise of 1~K. 
+
+So in equation \ref{H} we have the amount of energy per second passing into the melt zone, and in equation \ref{C} we have the amount of energy required for a 1~K temperature rise in the melt zone.  In order to find the rate of temperature rise $\frac{dT}{dt}$ we divide equation \ref{H} by equation \ref{C} to give 
+\begin{equation}
+\frac{dT}{dt} = \frac{\epsilon P_{C} A_{M} }{\rho A_{C} C_{P} V_{M}}. 
+\label{T}
+\end{equation}
+
+Just to repeat: I've used the convention that quantities with a subscript of $C$ refer to the Cartridge heater, and ones with a subscript of $M$ refer to the melt zone. 
+
+\section{A Worked Example}
+
+Here we work through this to calculate the expected order of magnitude rate of temperature change in the melt zone. 
+
+With a cylindrical melt zone of 1.8mm diameter and 17mm high, the outer surface area (excluding the end caps) is $A_{M} = 96$~mm$^{2}$ and the volume is $V_{M} = 43$~mm$^{3}$. 
+
+\begin{figure}[h!!!]
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/12V-40W-Reprap-Cartridge-Heater.png}
+\caption{A typical 3D FFF printer heater cartridge.}
+\label{fig:12V-40W-Reprap-Cartridge-Heater}
+\end{figure}
+
+\begin{figure}[h!!!]
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/nozzle_assembled}
+\caption{An assembled nozzle with heater cartridge inserted into the aluminium heat transfer block. This particular nozzle also has a Bowden tube attached.}
+\label{fig:nozzle_assembled}
+\end{figure}
+
+
+The heater cartridge has a power of $P_{C} = 40$~W and cylindrical dimensions of 6~mm in diameter, and 20~mm in height. So the heater outer surface area is $A_{C} = 377$~mm$^{2}$. 
+
+We assume that the heat transport efficiency $\epsilon$ is 1~\%. 
+
+We also assume that the filament material is PLA with a density of $\rho = 1.25$~g/cm$^{3}$ and specific heat capacity of $C_{P} = $1800~J K$^{-1}$ kg$^{-1}$. 
+
+Note that the density is in units of g/cm$^{3}$ and the other quantities are in units of kg and mm, so let's convert the density to kg/mm$^{-3}$: There is 10$^{-3}$~kilograms per gram (from the SI definitions) so $\rho = 1.25 \times 10^{-3}$~kg/cm$^{3}$; then 0.1 cm is the same as 1 mm, or 10$^{-3}$ cm$^{3}$ per mm$^{3}$. This eventually gives $\rho = 1.25 \times 10^{-6}$~kg/mm$^{3}$
+
+
+The temperature rise is hen 
+\begin{equation}
+\frac{dT}{dt} = \frac{0.01 \times 40 \times 96 }{\left( 1.25 \times 10^{-6}\right) \times 377 \times 1800 \times 43}. 
+\end{equation}
+or $\frac{dT}{dt} = 38.4/36.5 = 1.1 K/s$.  
+
+So the time taken to change temperature from the 20~$^{\circ}$C to 210~$^{\circ}$C, which is a temperature change of 190~K, is given by $190 / 1.1 = 180$~s. 
+
+From experience this is towards the upper end of the time taken to warm the nozzle up. 
+
+If the heat transport efficiency is 5~\%, then the rate of temperature rise increases by a factor of five and the time taken reduces by the same factor. The time taken is then 36~s.  
+
+It is also possible to appreciate the effect of changing filament thickness to the other standard diameter of 3~mm from 1.8~mm. This increases the surface area by a factor of $3/1.8 = 1.67$ and the volume by a factor of $\left( 3/1.8 \right)^{2} = 2.78$. As the rate of temperature rise (see equation \ref{T}) is proportional to the ratio of melt zone area to melt zone volume, then the it will decrease by a factor of $1.67 / 2.78$ or 0.6. So, if all other parameters are kept constant, then the rate of temperature rise is 0.6 times 1.1 K/s = 0.66 K/s and the time taken to heat up is also proportionately longer (between 55~s and 272~s for $\epsilon$ of 1~\% and 5~\% respectively). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+
+
+\section{Thermal Transport Model}
+
+Typically with Fused Filament Fabrication (FFF) techniques a cylindrical cartridge heater is used. For the purposes of this calculation, we need to read the data sheet of the cartridge heater which will give the power $P_{C}$ in Watts (or J/s). From this we can calculate the heat energy flux (the heat energy per unit time per unit area) from the outer cylindrical surface $A_{C}$. We assume that heat energy is lost to the environment when it is radiated out of the circular top and bottom of the cylindrical cartridge heater. The heat energy per unit time per unit area is given by 
+\begin{equation}
+H_{C} = \frac{P_{C}}{A_{C}}. 
+\end{equation}
+
+The heat energy from the cartridge heater is transported to the filament melt zone typically through an aluminium block and then the outer brass cylinder of the extruder nozzle. We simplify this process and assume that the its efficiency is given by $\epsilon$, with typical values of the order of 1 to 5\% level (i.e. 1 to 5\% of the heat energy from the heater cartridge is transported to the melt zone). The amount of heat energy per unit time per unit area entering the melt zone is $\epsilon H_{C}$. 
+
+We now need to find two quantities: Firstly the amount of heat from the cartridge entering the melt zone and secondly the amount of energy required to cause a temperature change. 
+
+In order to calculate the amount of heat entering the melt zone, we need to find the area of the outer surface of the melt zone which is given by $A_{M}$. The heat flux (energy per unit time per area) from the cartridge is $\epsilon H_{C}$ as mentioned above. As this is passing through the outer surface area of the melt zone, we multiply this flux by the melt zone surface area $A_{M}$ to give the rate of energy passing into the melt zone, which is 
+\begin{equation}
+P_{M} = \frac{\epsilon P_{C} A_{M} }{A_{C}}
+\label{H}
+\end{equation}
+and gives the heat energy per unit time (in Watts) passing into the melt zone. 
+
+The second quantity, that we need to estimate, is the effect of this heat transport passing into the melt zone. This heat energy raises the temperature of the filament melt. The energy required to do this per temperature rise (in Kelvin) per mass of melt (in kg) is the specific heat capacity $C_{p}$ typically expressed in units of J K$^{-1}$ kg$^{-1}$. 
+
+So now we need to find the mass of the melt (in kg) to find how much energy is required to raise the temperature of the whole of the melt zone . 
+
+The mass of the filament melt is melt volume multiplied by its density $\rho$, or 
+\begin{equation}
+m = \rho V_{M}. 
+\end{equation}
+The heat capacity (the energy required for a unit temperature change) is then 
+\begin{equation}
+c = C_{p} \rho V_{M} 
+\label{C}
+\end{equation}
+which gives the amount of energy required for a temperature rise of 1~K. 
+
+So in equation \ref{H} we have the amount of energy per second passing into the melt zone, and in equation \ref{C} we have the amount of energy required for a 1~K temperature rise in the melt zone.  In order to find the rate of temperature rise $\frac{dT}{dt}$ we divide equation \ref{H} by equation \ref{C} to give 
+\begin{equation}
+\frac{dT}{dt} = \frac{\epsilon P_{C} A_{M} }{\rho A_{C} C_{P} V_{M}}. 
+\label{T}
+\end{equation}
+
+Just to repeat: I've used the convention that quantities with a subscript of $C$ refer to the Cartridge heater, and ones with a subscript of $M$ refer to the melt zone. 
+
+\section{A Worked Example}
+
+Here we work through this to calculate the expected order of magnitude rate of temperature change in the melt zone. 
+
+With a cylindrical melt zone of 1.8mm diameter and 17mm high, the outer surface area (excluding the end caps) is $A_{M} = 96$~mm$^{2}$ and the volume is $V_{M} = 43$~mm$^{3}$. 
+
+\begin{figure}[h!!!]
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/12V-40W-Reprap-Cartridge-Heater.png}
+\caption{A typical 3D FFF printer heater cartridge.}
+\label{fig:12V-40W-Reprap-Cartridge-Heater}
+\end{figure}
+
+\begin{figure}[h!!!]
+\centering
+\includegraphics[width=0.7\linewidth]{pictures/nozzle_assembled}
+\caption{An assembled nozzle with heater cartridge inserted into the aluminium heat transfer block. This particular nozzle also has a Bowden tube attached.}
+\label{fig:nozzle_assembled}
+\end{figure}
+
+
+The heater cartridge has a power of $P_{C} = 40$~W and cylindrical dimensions of 6~mm in diameter, and 20~mm in height. So the heater outer surface area is $A_{C} = 377$~mm$^{2}$. 
+
+We assume that the heat transport efficiency $\epsilon$ is 1~\%. 
+
+We also assume that the filament material is PLA with a density of $\rho = 1.25$~g/cm$^{3}$ and specific heat capacity of $C_{P} = $1800~J K$^{-1}$ kg$^{-1}$. 
+
+Note that the density is in units of g/cm$^{3}$ and the other quantities are in units of kg and mm, so let's convert the density to kg/mm$^{-3}$: There is 10$^{-3}$~kilograms per gram (from the SI definitions) so $\rho = 1.25 \times 10^{-3}$~kg/cm$^{3}$; then 0.1 cm is the same as 1 mm, or 10$^{-3}$ cm$^{3}$ per mm$^{3}$. This eventually gives $\rho = 1.25 \times 10^{-6}$~kg/mm$^{3}$
+
+
+The temperature rise is hen 
+\begin{equation}
+\frac{dT}{dt} = \frac{0.01 \times 40 \times 96 }{\left( 1.25 \times 10^{-6}\right) \times 377 \times 1800 \times 43}. 
+\end{equation}
+or $\frac{dT}{dt} = 38.4/36.5 = 1.1 K/s$.  
+
+So the time taken to change temperature from the 20~$^{\circ}$C to 210~$^{\circ}$C, which is a temperature change of 190~K, is given by $190 / 1.1 = 180$~s. 
+
+From experience this is towards the upper end of the time taken to warm the nozzle up. 
+
+If the heat transport efficiency is 5~\%, then the rate of temperature rise increases by a factor of five and the time taken reduces by the same factor. The time taken is then 36~s.  
+
+It is also possible to appreciate the effect of changing filament thickness to the other standard diameter of 3~mm from 1.8~mm. This increases the surface area by a factor of $3/1.8 = 1.67$ and the volume by a factor of $\left( 3/1.8 \right)^{2} = 2.78$. As the rate of temperature rise (see equation \ref{T}) is proportional to the ratio of melt zone area to melt zone volume, then the it will decrease by a factor of $1.67 / 2.78$ or 0.6. So, if all other parameters are kept constant, then the rate of temperature rise is 0.6 times 1.1 K/s = 0.66 K/s and the time taken to heat up is also proportionately longer (between 55~s and 272~s for $\epsilon$ of 1~\% and 5~\% respectively). 
+
+
+
+
+
+
+
