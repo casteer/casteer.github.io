@@ -1,4 +1,4 @@
-# Computer-Aided Design Portfolio
+# Computer-Aided Design
 
 I just like building, making and testing sensors and mechnical curiousities. 
 
