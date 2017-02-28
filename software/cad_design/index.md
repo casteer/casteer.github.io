@@ -1,6 +1,6 @@
 # Computer-Aided Design
 
-I just like building, making and testing sensors and mechnical curiousities. 
+I just like building, making and testing sensors and mechanical curiousities. 
 
 ## An automatic artificial muscle winding system
 
