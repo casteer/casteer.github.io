@@ -4,4 +4,4 @@ Octopus arms and elephant trunks are both examples of muscular hydrostats; these
 
 A man-made robotic analogue of muscular hydrostats is the continuum arm, comprising flexible sections that move when tendons are pulled. 
 
-3D printed continuum arms are inspire 
+3D printed continuum arms 
