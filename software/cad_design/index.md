@@ -4,6 +4,10 @@ I just like building, making and testing sensors and mechnical curiousities.
 
 ## An automatic artificial muscle winding system
 
+Artifical muscles can be produced using a simple filament winding method that produces a helix [[1]](http://science.sciencemag.org/content/343/6173/868). The sewing thread or fishing line is attached to the drill and a weight attached. As the drill spins the nylon line first twists and then starts to produce a helix structure as the twists pile-up on the filament [[2]](https://www.youtube.com/watch?v=1A2LUbJjDQ0). 
+
+The production of actuators in this fashion is extremely low-cost compared to traditional motor-based techniques and gives good performance: Artifical muscles can contract upto 49% and lifts around 100 times the weight of the human. 
+
 This was inspired by a previous design with a video [here](https://www.youtube.com/watch?v=iMMGfzYXwAU). So there seem to be a few stages to the production: 
 
 1. Winding heater wire around the pre-wound nylon filament
