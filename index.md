@@ -1,12 +1,19 @@
 
 ### Research Interests and Experience
 
-- Instrumentation for particle detection and environmental sensing
+I have a few interests including:
+
+- Instrumentation for particle detection and environmental sensing [a relative link](research/index.md)
+
 - Additive manufacturing and mechanical design
-- Mathematical modelling of sensors 
 - Industrial applications of cosmic rays
-- Hyperspectral satellite image analysis
+
+In the past I've also worked in a few other areas, focussing on the following: 
+
 - Image and data analysis algorithm development, particularly image fusion and registration
+- Hyperspectral satellite image analysis
+- Mathematical modelling of spectral sensors 
+
 
 ### Software
 
