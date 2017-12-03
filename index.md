@@ -2,18 +2,14 @@
 ### Research Interests and Experience
 
 I have a few interests including:
-
-- Instrumentation for particle detection and environmental sensing [a relative link](research/index.md)
-
-- Additive manufacturing and mechanical design
-- Industrial applications of cosmic rays
+- [Instrumentation](research/instrumentation.md) for particle detection and environmental sensing
+- [Additive manufacturing](research/3dprinting.md) and mechanical design
+- [Cosmic rays](research/cosmicrays.md)  and their imaging applications
 
 In the past I've also worked in a few other areas, focussing on the following: 
-
 - Image and data analysis algorithm development, particularly image fusion and registration
 - Hyperspectral satellite image analysis
 - Mathematical modelling of spectral sensors 
-
 
 ### Software
 
