@@ -1,6 +1,6 @@
 # Introduction to Cosmic Rays 
 
-Cosmic rays are particles that rain down on the Earth's surface and have proved tremendously useful imaging large structures. The technique's measurement principle is analogous to medical X-rays. When an x-ray radiograph is taken, changes in tissue and bone materials stop differing proportions of x-rays. These variations in x-ray intensity are measured by an x-ray detector or image plate that reveals information about the structure underneath the skin's surface. 
+Cosmic rays are particles that rain down on the Earth's surface and have proved tremendously useful for imaging large structures, such as pyramids or volcanoes. The technique's measurement principle is analogous to medical X-rays. When an x-ray radiograph is taken, changes in tissue and bone materials stop differing proportions of x-rays. These variations in x-ray intensity are measured by an x-ray detector or image plate that reveals information about the structure underneath the skin's surface. 
 
 Cosmic rays are a mixture of many different particle types, with muons dominating at sea-level. Muons are singly-charged, can be positive or negative, so are similar to electrons except that muons are around 200-times heavier. Muons are unstable, however, that on average last 2.2 microseconds (one microsecond is a millionth of a second) before decaying to other particles. For the most part, imaging applications of cosmic rays solely use cosmic ray muons but that's not to say the other particles are completely useless.
 
