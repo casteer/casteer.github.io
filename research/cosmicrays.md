@@ -1,3 +1,15 @@
-# Imaging Applications of Cosmic Rays 
+# Introduction to Cosmic Rays 
 
-Cosmic rays are particles that rain down on the Earth's surface and have proved tremendously useful in an analogous manner to medical X-rays. When an x-ray radiograph is taken, changes in tissue and bone materials stop differing proportions of x-rays. These variations in x-ray intensity are measured by an x-ray detector or image plate that reveals information about the structure underneath the skin's surface. 
+Cosmic rays are particles that rain down on the Earth's surface and have proved tremendously useful imaging large structures. The technique's measurement principle is analogous to medical X-rays. When an x-ray radiograph is taken, changes in tissue and bone materials stop differing proportions of x-rays. These variations in x-ray intensity are measured by an x-ray detector or image plate that reveals information about the structure underneath the skin's surface. 
+
+Cosmic rays are a mixture of many different particle types, with muons dominating at sea-level. Muons are singly-charged, can be positive or negative, so are similar to electrons except that muons are around 200-times heavier. Muons are unstable, however, that on average last 2.2 microseconds (one microsecond is a millionth of a second) before decaying to other particles. For the most part, imaging applications of cosmic rays solely use cosmic ray muons but that's not to say the other particles are completely useless.
+
+Cosmic ray muons are also extremely energetic, travelling near the speed of light, that extends cosmic ray muon's lifetime due relativistic time dilation which means that the the lifetime if closer to 40 microseconds. At 40 microseconds and a speed of the order of the light speed, the typical travel distance of a cosmic ray muon is around 12 km or so. At this is an appreciable thickness of atmosphere, many muons produced at this altitude or below will not decay before reaching the ground. 
+
+#### Energy loss of cosmic ray muons in the atmosphere
+
+Cosmic ray muons do not fly unimpeded through the atmosphere and can also interact with atoms in the air. It is possible to estimate the energy loss of an average muon of energy 3 GeV so let's do this now. Muons lose around 1.8 MeV g^{-1} cm^{2} (look up the Bethe-Bloch curve for a GeV-energy muon for more information); the strange units on this energy loss mean that it needs to be multiplied by the atmosphere's areal mass, which is the density multipled by the line-of-sight thickness, in order to find the muon's energy loss. Air density varies with altitude and is 0.0012 g cm^{-3} at sea level falling to 20% of its sea level density at 12km, so let's use a value of 0.0006 g cm^{-3} for our order of magnitude estimate. Putting this together leads to a total energy loss around 1.3 GeV, suggesting that energy loss is appreciable for many muons but that there is still a significant flux of muons incident on the Earth's surface.  
+
+#### Angular dependence of the cosmic ray muon flux 
+
+This back-of-the-envelope calculation assumes that we're measuring only vertical muons and, as can be seen from the effect of the line-of-sight thickness of the atmosphere. So an implication of the atmospheric energy loss of cosmic ray muons is that the intensity is dependent on which direction in the sky you're looking. If you're looking towards the horizon, the flux is far smaller (by a factor of the order of 1/80) than if you're were looking vertically upwards in the sky. 
